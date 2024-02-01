@@ -112,7 +112,7 @@ export const RegisterForm = () => {
             <FormError message={error}/>
             <FormSuccess message={success} />
             <Button type="submit" className=" w-full">
-              LOGIN
+              CREATE AN ACCOUNT
             </Button>
           </form>
         </Form>

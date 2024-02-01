@@ -17,7 +17,7 @@ export default function Home() {
             className=" px-5 bg-white text-black rounded-md py-3 
         hover:cursor-pointer hover:opacity-80 w-full"
           >
-            <LoginButton >
+            <LoginButton  >
               Sign In
               </LoginButton>
           </button>
