@@ -5,7 +5,7 @@ import { CardWrapper } from "./card-wrapper";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema } from "@/schemas";
+
 import {
   Form,
   FormControl,
@@ -21,28 +21,28 @@ import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
 
 import { RegisterSchema } from "@/schemas";
-import { Login } from "@/actions/login";
+
+import { register } from "@/actions/register";
 
 export const RegisterForm = () => {
-    const[error,setError] = useState<string|undefined>("")
-    const [success,setSuccess] = useState<string|undefined>("")
+  const [error, setError] = useState<string | undefined>("");
+  const [success, setSuccess] = useState<string | undefined>("");
   const form = useForm<z.infer<typeof RegisterSchema>>({
     resolver: zodResolver(RegisterSchema),
     defaultValues: {
       email: "",
       password: "",
-      name:""
+      name: "",
     },
   });
 
   const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
-   startTransition(()=>{
-    Login(values)
-    .then(data=>{
-        setError(data?.error)
-        setSuccess(data?.success)
-    })
-   })
+    startTransition(() => {
+      register(values).then((data) => {
+        setError(data?.error);
+        setSuccess(data?.success);
+      });
+    });
   };
   const isLoading = form.formState.isSubmitting;
   return (
@@ -109,7 +109,7 @@ export const RegisterForm = () => {
                 )}
               />
             </div>
-            <FormError message={error}/>
+            <FormError message={error} />
             <FormSuccess message={success} />
             <Button type="submit" className=" w-full">
               CREATE AN ACCOUNT
