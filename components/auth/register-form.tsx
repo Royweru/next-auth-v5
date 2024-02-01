@@ -41,6 +41,7 @@ export const RegisterForm = () => {
       register(values).then((data) => {
         setError(data?.error);
         setSuccess(data?.success);
+        form.reset()
       });
     });
   };
@@ -111,7 +112,7 @@ export const RegisterForm = () => {
             </div>
             <FormError message={error} />
             <FormSuccess message={success} />
-            <Button type="submit" className=" w-full">
+            <Button type="submit" className=" w-full" disabled={isLoading}>
               CREATE AN ACCOUNT
             </Button>
           </form>
