@@ -7,6 +7,8 @@ import db from "@/lib/db"
 export const {
   handlers: { GET, POST },
   auth,
+  signOut,
+  signIn
 } = NextAuth({
   adapter:PrismaAdapter(db),
   session:{strategy:"jwt"},
